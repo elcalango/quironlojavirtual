@@ -1,6 +1,5 @@
-﻿
-@model Quiron.LojaVirtual.Dominio.Entidades.Pedido
-           
+﻿@model Quiron.LojaVirtual.Dominio.Entidades.Pedido
+
 @{
     ViewBag.Title = "Quiron: Fechar Pedido";
 }
@@ -12,39 +11,50 @@
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary()
-    
+
     <h3>Enviar para</h3>
 
     <div class="form-group">
         <label>Nome do cliente:</label>
-        @Html.TextBoxFor(m => m.NomeCliente, new{@class = "form-control"})
+        @Html.TextBoxFor(m => m.NomeCliente, new { @class = "form-control" })
     </div>
-    
+
     <h3>Dados para entrega</h3>
-    <div class="form-group">
-        <label>Cep:</label>
-        @Html.TextBoxFor(m => m.Cep, new{@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label>Endereço:</label>
-        @Html.TextBoxFor(m => m.Endereco, new{@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label>Complemento:</label>
-        @Html.TextBoxFor(m => m.Complemento, new{@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label>Cidade:</label>
-        @Html.TextBoxFor(m => m.Cidade, new{@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label>Bairro:</label>
-        @Html.TextBoxFor(m => m.Bairro, new{@class = "form-control"})
-    </div>
-    <div class="form-group">
-        <label>E-mail:</label>
-        @Html.TextBoxFor(m => m.Email, new{@class = "form-control"})
-    </div>
+    @*<div class="form-group">
+            <label>Cep:</label>
+            @Html.TextBoxFor(m => m.Cep, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Endereço:</label>
+            @Html.TextBoxFor(m => m.Endereco, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Complemento:</label>
+            @Html.TextBoxFor(m => m.Complemento, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Cidade:</label>
+            @Html.TextBoxFor(m => m.Cidade, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Bairro:</label>
+            @Html.TextBoxFor(m => m.Bairro, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>E-mail:</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>*@
+
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName != "NomeCliente" && property.PropertyName != "EmbrulhaPresente")
+        {
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                @Html.TextBox(property.PropertyName, null, new {@class = "form-control"})
+            </div>
+        }
+    }
     <h3>Opções</h3>
     <div class="checkbox">
         <label>
@@ -53,3 +63,27 @@
     </div>
     <input type="submit" class="btn btn-primary" value="Fechar pedido" />
 }
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $('#Cep').change(function(e) {
+        e.preventDefault();
+
+        $('#Endereco').val('');
+        $('#Bairro').val('');
+        $('#Cidade').val('');
+        $('#Estado').val('');
+
+        var cep = $('#Cep').val().replace("-", "");
+
+        $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=json", {}, function(data) {
+            if (data.resultado_txt == "sucesso - cep completo") {
+                $('#Endereco').val(data.tipo_logradouro + ' ' + data.logradouro);
+                $('#Bairro').val(data.bairro);
+                $('#Cidade').val(data.cidade);
+                $('#Estado').val(data.uf);
+            }
+        });
+    });
+</script>
+
