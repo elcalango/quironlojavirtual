@@ -13,8 +13,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
 
         public PartialViewResult Menu(string categoria = null)
         {
-            ViewBag.CategoriaSeleciona = categoria;
-
+            ViewBag.CategoriaSelecionada = categoria;
             _repositorio = new ProdutosRepositorio();
 
             IEnumerable<string> categorias = _repositorio.Produtos

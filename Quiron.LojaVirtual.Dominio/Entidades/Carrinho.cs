@@ -43,7 +43,7 @@ namespace Quiron.LojaVirtual.Dominio.Entidades
             _itemCarrinho.Clear();
         }
         //Itens do carrinho
-        public IEnumerable<ItemCarrinho> ItemCarrinhos
+        public IEnumerable<ItemCarrinho> ItensCarrinho
         {
             get { return _itemCarrinho; }
         }
