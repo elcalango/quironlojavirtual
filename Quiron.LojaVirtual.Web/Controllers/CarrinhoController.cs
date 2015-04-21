@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Quiron.LojaVirtual.Dominio.Entidades;
 using Quiron.LojaVirtual.Dominio.Repositorio;
 using Quiron.LojaVirtual.Web.Models;
+using System.Configuration;
 
 namespace Quiron.LojaVirtual.Web.Controllers
 {
@@ -12,7 +13,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
         private ProdutosRepositorio _repositorio;
         public RedirectToRouteResult Adicionar(int produtoId, string returnUrl)
         {
-             _repositorio = new ProdutosRepositorio();
+            _repositorio = new ProdutosRepositorio();
 
             Produto produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
 
@@ -21,12 +22,12 @@ namespace Quiron.LojaVirtual.Web.Controllers
                 ObterCarrinho().AdicionarItem(produto, 1);
             }
 
-            return RedirectToAction("Index", new {returnUrl});
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         private Carrinho ObterCarrinho()
         {
-            Carrinho carrinho = (Carrinho) Session["Carrinho"];
+            Carrinho carrinho = (Carrinho)Session["Carrinho"];
 
             if (carrinho == null)
             {
@@ -49,7 +50,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
                 ObterCarrinho().RemoverItem(produto);
             }
 
-            return RedirectToAction("Index", new {returnUrl});
+            return RedirectToAction("Index", new { returnUrl });
         }
 
         public ViewResult Index(string returnurl)
@@ -70,6 +71,42 @@ namespace Quiron.LojaVirtual.Web.Controllers
         public ViewResult FecharPedido()
         {
             return View(new Pedido());
+        }
+
+        [HttpPost]
+        public ViewResult FecharPedido(Pedido pedido)
+        {
+            Carrinho carrinho = ObterCarrinho();
+
+            EmailConfiguracoes email = new EmailConfiguracoes()
+            {
+                EscreverArquivo = bool.Parse( ConfigurationManager.AppSettings["Email.EscreverArquivo"] )
+            };
+
+            EmailPedido emailPedido = new EmailPedido(email);
+
+            if (!carrinho.ItensCarrinho.Any())
+            {
+                ModelState.AddModelError("","Não foi possível concluir o pedido, seu carrinho está vazio!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                emailPedido.ProcessarPedido(carrinho, pedido);
+                carrinho.LimparCarrinho();
+                return View("PedidoConcluido");
+            }
+            else
+            {
+                return View(pedido);
+            }
+
+             
+        }
+
+        public ViewResult PedidoConcluido()
+        {
+            return View();
         }
     }
 }

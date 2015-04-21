@@ -17,6 +17,7 @@
     <div class="form-group">
         <label>Nome do cliente:</label>
         @Html.TextBoxFor(m => m.NomeCliente, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NomeCliente)
     </div>
 
     <h3>Dados para entrega</h3>
@@ -68,11 +69,12 @@
 <script>
     $('#Cep').change(function(e) {
         e.preventDefault();
-
+        
         $('#Endereco').val('');
         $('#Bairro').val('');
         $('#Cidade').val('');
         $('#Estado').val('');
+
 
         var cep = $('#Cep').val().replace("-", "");
 
