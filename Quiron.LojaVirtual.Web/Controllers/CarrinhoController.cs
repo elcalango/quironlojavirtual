@@ -58,6 +58,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
             return View(new CarrinhoViewModel
             {
                 Carrinho = ObterCarrinho(),
+
                 ReturnUrl = returnurl
             });
         }

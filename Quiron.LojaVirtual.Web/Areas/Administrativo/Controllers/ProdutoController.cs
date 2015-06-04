@@ -1,4 +1,5 @@
-﻿using Quiron.LojaVirtual.Dominio.Repositorio;
+﻿using Quiron.LojaVirtual.Dominio.Entidades;
+using Quiron.LojaVirtual.Dominio.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,28 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
             _repositorio = new ProdutosRepositorio();
             var produtos = _repositorio.Produtos;
             return View(produtos);
+        }
+
+        public ViewResult Alterar(int produtoId)
+        {
+            _repositorio = new ProdutosRepositorio();
+            var produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+            return View(produto);
+        }
+        [HttpPost]
+        public ActionResult Alterar (Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                _repositorio = new ProdutosRepositorio();
+                _repositorio.Salvar(produto);
+
+                TempData["mensagem"] = string.Format("{0} foi salvo com sucesso!", produto.Nome);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(produto);
         }
 	}
 }

@@ -4,12 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Quiron.LojaVirtual.Dominio.Repositorio;
+using Quiron.LojaVirtual.Dominio.Entidades;
 
 namespace Quiron.LojaVirtual.Web.Controllers
 {
     public class ProdutosController : Controller
     {
         private ProdutosRepositorio _repositorio;
+
+        
         //
         // GET: /Produtos/
         public ActionResult Index()
@@ -18,5 +21,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
             var produtos = _repositorio.Produtos.Take(10);
             return View(produtos);
         }
+
+        
 	}
 }
