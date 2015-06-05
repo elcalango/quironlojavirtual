@@ -3,11 +3,13 @@
     ViewBag.Title = "Administrativo - Produtos";
     Layout = "~/Areas/Administrativo/Views/Shared/_AdministrativoLayout.cshtml";
 }
-<div class="alert alert-success"></div>
+
+
+<div id="divexcluir"></div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>Quiron Loja Virtual = Administrativo - Produtos</h3>
+        <h3>Quiron Loja Virtual - Administrativo - Produtos</h3>
     </div>
     <div class="panel-body">
         @*<a href="/Administrativo/Produto/NovoProduto?Length=7" class="btn btn-default">Novo Produto</a>*@
@@ -55,28 +57,4 @@
 
 @Html.Partial("Confirmacao");
 
-<script>
-    $(function () {
-        $(".btn-xs").click(function (e) {
-            e.preventDefault();
-            var id = this.id;
-            var nome = this.name;
 
-            $("#deleteModal .modal-body input[type=hidden]").val(id);
-            $("#deleteModal .modal-body span").text(nome);
-
-            $("#deleteModal").modal('show');
-        });
-
-        $("#deleteModal .modal-footer button").click(function (e) {
-            e.preventDefault();
-
-            var url = "Administrativo/Produto/Excluir/";
-            var id = $(".modal-body input[type=hidden]").val();
-
-            var rowNo = "row" + id;
-
-            alert(rowNo);
-        });
-    });
-</script>
