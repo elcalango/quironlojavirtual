@@ -5,28 +5,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Quiron.LojaVirtual.Web.Controllers
 {
     public class AutenticacaoController : Controller
     {
-        //
-        // GET: /Autenticacao/
-        public ActionResult Index()
+        AdministradorRepositorio _repositorio = null;
+
+        public ActionResult Login(string returnUrl)
         {
-            return View();
+            ViewBag.ReturnUrl = returnUrl;
+            return View(new Administrador());
         }
-
-        public ActionResult Login()
+        [HttpPost]
+        public ActionResult Login(Administrador administrador, string returnUrl)
         {
-            Administrador administrador = new Administrador();
-            administrador.Login = "Aluno";
+            _repositorio = new AdministradorRepositorio();
+            
+            if (ModelState.IsValid)
+            {
+                Administrador admin = _repositorio.ObterAdministrador(administrador);
 
-            AdministradorRepositorio repositorio = new AdministradorRepositorio();
+                if (admin != null)
+                {
+                    if (!Equals(administrador.Senha, admin.Senha))
+                    {
+                        ModelState.AddModelError("", "Senha não confere");
 
-            var adm = repositorio.ObterAdministrador(administrador);
+                        if (Url.IsLocalUrl(returnUrl) &&
+                            returnUrl.Length > 1 &&
+                            returnUrl.StartsWith("/") &&
+                            !returnUrl.StartsWith("//") &&
+                            !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(admin.Login, false);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("","Administrador não localizado");
+                }
+            }
 
-            return View();
+            return View(new Administrador());
         }
 	}
 }
