@@ -31,7 +31,12 @@ namespace Quiron.LojaVirtual.Web.Controllers
                 {
                     if (!Equals(administrador.Senha, admin.Senha))
                     {
-                        ModelState.AddModelError("", "Senha não confere");
+                        ModelState.AddModelError("", "Senha não confere");                        
+                    }
+                    else
+                    {                       
+
+                        FormsAuthentication.SetAuthCookie(admin.Login, false);
 
                         if (Url.IsLocalUrl(returnUrl) &&
                             returnUrl.Length > 1 &&
@@ -41,10 +46,6 @@ namespace Quiron.LojaVirtual.Web.Controllers
                         {
                             return Redirect(returnUrl);
                         }
-                    }
-                    else
-                    {
-                        FormsAuthentication.SetAuthCookie(admin.Login, false);
                     }
                 }
                 else
