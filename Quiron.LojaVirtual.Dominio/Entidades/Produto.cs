@@ -22,5 +22,8 @@ namespace Quiron.LojaVirtual.Dominio.Entidades
         public decimal Preco { get; set; }
         [Required(ErrorMessage = "Digite o nome a categoria")]
         public string Categoria { get; set; }
+
+        public byte[] Imagem { get; set; }
+        public string ImagemMimeType { get; set; }
     }
 }
