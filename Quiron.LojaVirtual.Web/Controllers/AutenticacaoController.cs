@@ -46,6 +46,10 @@ namespace Quiron.LojaVirtual.Web.Controllers
                         {
                             return Redirect(returnUrl);
                         }
+                        else
+                        {
+                            return Redirect("home/index");
+                        }
                     }
                 }
                 else

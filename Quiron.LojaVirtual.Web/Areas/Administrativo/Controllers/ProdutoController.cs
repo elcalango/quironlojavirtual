@@ -21,14 +21,19 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
             return View(produtos);
         }
 
-        public ViewResult Alterar(int produtoId)
+        public ViewResult Alterar(int produtoId = 0)
         {
             _repositorio = new ProdutosRepositorio();
-            var produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
-            return View(produto);
+            if (produtoId > 0)
+            {
+                var produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+                return View(produto);
+            }
+
+            return View(new Produto());
         }
         [HttpPost]
-        public ActionResult Alterar(Produto produto)
+        public ActionResult Alterar(Produto produto, HttpPostedFileBase imagem = null)
         {
             if (ModelState.IsValid)
             {
