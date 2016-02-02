@@ -48,7 +48,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
                         }
                         else
                         {
-                            return Redirect("home/index");
+                            return RedirectToAction("Index","Produto", new { area = "Administrativo" });
                         }
                     }
                 }
