@@ -1,0 +1,84 @@
+﻿@model Quiron.LojaVirtual.Web.Areas.Administrativo.Models.ProdutoViewModel
+@{
+    ViewBag.Title = "Alterar2";
+    Layout = "~/Areas/Administrativo/Views/Shared/_AdministrativoLayout.cshtml";
+}
+
+
+
+<div class="panel">
+    <div class="panel-heading">
+        @if (@Model.produto.Nome != null)
+        {
+            <h3>Alterar - @Model.produto.Nome</h3>
+        }
+    </div>
+
+    @*@using (Html.BeginForm("Alterar", "Produto"))*@
+    @using (Html.BeginForm("Alterar2", "Produto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.produto.ProdutoId)
+
+            <div class="form-group">
+                <label>
+                    @Html.LabelFor(p => p.produto.Nome)
+                </label>
+                @Html.TextBoxFor(m => m.produto.Nome, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.produto.Nome)
+            </div>
+            <div class="form-group">
+                <label>
+                    @Html.LabelFor(p => p.produto.Descricao)
+                </label>
+                @Html.TextAreaFor(m => m.produto.Descricao, new { @class = "form-control", rows = 5 })
+                @Html.ValidationMessageFor(m => m.produto.Descricao)
+            </div>
+            <div class="form-group">
+                <label>
+                    @Html.LabelFor(p => p.produto.Preco)
+                </label>
+                @Html.TextBoxFor(m => m.produto.Preco, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.produto.Preco)
+            </div>
+            <div class="form-group">
+                <label>
+                    @Html.LabelFor(p => p.produto.Categoria)
+                </label>
+                @Html.TextBoxFor(m => m.produto.Categoria, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.produto.Categoria)
+
+
+            </div>
+
+
+            <div class="form-group">
+                <div style="position: relative;">
+                    <label>Imagem</label>
+                    <a href="javascript:;" class="btn">
+                        Selecione a imagem...
+
+                        <input type="file" onchange="$('#upload-file-info').html($(this).val()); alert('oi');"
+                               style="position: absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0); opacity:0;
+                            background-color: transparent; color: transparent; " size="40" name="Imagem" id="Imagem" />
+
+                    </a>
+                    <span id="upload-file-info" class="label label-info"></span>
+                </div>
+                @if (Model.produto.Imagem == null)
+                {
+                    <div class="form-control-static">Nenhuma Imagem</div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="120" height="120" src="@Url.Action("ObterImagem","Produto", new { Model.produto.ProdutoId, area = "" })" />
+                }
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+            @Html.ActionLink("Cancelar e retornar", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

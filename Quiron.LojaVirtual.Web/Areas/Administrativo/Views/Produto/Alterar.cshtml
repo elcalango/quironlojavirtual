@@ -7,10 +7,7 @@
 
 
 
-
-@*@Html.AntiForgeryToken()*@
-
-@*@Html.EditorForModel();*@
+ 
 
 <div class="panel">
     <div class="panel-heading">
@@ -65,8 +62,8 @@
                 <div style="position: relative;">
                     <label>Imagem</label>
                     <a href="javascript:;" class="btn">
-                        Selecione a image...
-
+                        Selecione a imagem...
+                         
                         <input type="file" onchange="$('#upload-file-info').html($(this).val()); alert('oi');"
                                style="position: absolute; z-index:2; top:0; left:0; filter: alpha(opacity=0); opacity:0;
                           background-color: transparent; color: transparent; " size="40" name="Imagem" id="Imagem" />
@@ -79,7 +76,7 @@
                 }
                 else
                 {
-                    <img class="img-thumbnail" width="120" height="120" src="@Url.Action("ObterImagem","Produto", new { ProdutoId = Model.ProdutoId })" />
+                    <img class="img-thumbnail" width="120" height="120" src="@Url.Action("ObterImagem","Produto", new { Model.ProdutoId, area = "" })" />
                 }
             </div>
         </div>

@@ -1,5 +1,6 @@
 ﻿using Quiron.LojaVirtual.Dominio.Entidades;
 using Quiron.LojaVirtual.Dominio.Repositorio;
+using Quiron.LojaVirtual.Web.Areas.Administrativo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,16 +34,36 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
 
             return View(new Produto());
         }
+
+        public ViewResult Alterar2(int produtoId = 0)
+        {
+
+            _repositorio = new ProdutosRepositorio();
+            if (produtoId > 0)
+            {
+                ProdutoViewModel produto = new ProdutoViewModel();
+                produto.produto = _repositorio.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+                if (produto.produto.Imagem != null)
+                {
+                    //produto.Imagem = produto.produto.Imagem as HttpPostedFileBase;
+                }
+
+                return View(produto);
+            }
+
+            return View(new ProdutoViewModel());
+        }
+
         [HttpPost]
-        public ActionResult Alterar(Produto produto, HttpPostedFileBase imagem = null)
+        public ActionResult Alterar(Produto produto, HttpPostedFileBase Imagem = null)
         {
             if (ModelState.IsValid)
             {
-                if (imagem != null)
+                if (Imagem != null)
                 {
-                    produto.ImagemMimeType = imagem.ContentType;
-                    produto.Imagem = new byte[imagem.ContentLength];
-                    imagem.InputStream.Read(produto.Imagem, 0, imagem.ContentLength);
+                    produto.ImagemMimeType = Imagem.ContentType;
+                    produto.Imagem = new byte[Imagem.ContentLength];
+                    Imagem.InputStream.Read(produto.Imagem, 0, Imagem.ContentLength);
                 }
 
                 _repositorio = new ProdutosRepositorio();
@@ -55,6 +76,31 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
 
             return View(produto);
         }
+
+        [HttpPost]
+        public ActionResult Alterar2(ProdutoViewModel produtoVM)
+        {
+            if (ModelState.IsValid)
+            {
+                if (produtoVM.Imagem != null)
+                {
+                    produtoVM.produto.ImagemMimeType = produtoVM.Imagem.ContentType;
+                    produtoVM.produto.Imagem = new byte[produtoVM.Imagem.ContentLength];
+                    produtoVM.Imagem.InputStream.Read(produtoVM.produto.Imagem, 0, produtoVM.Imagem.ContentLength);
+                }
+
+                _repositorio = new ProdutosRepositorio();
+                _repositorio.Salvar(produtoVM.produto);
+
+                TempData["mensagem"] = string.Format("{0} foi salvo com sucesso!", produtoVM.produto.Nome);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(produtoVM);
+        }
+
+        
 
         public ViewResult NovoProduto()
         {

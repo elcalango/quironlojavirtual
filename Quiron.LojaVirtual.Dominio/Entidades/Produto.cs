@@ -24,6 +24,7 @@ namespace Quiron.LojaVirtual.Dominio.Entidades
         public string Categoria { get; set; }
 
         public byte[] Imagem { get; set; }
+         
         public string ImagemMimeType { get; set; }
     }
 }
