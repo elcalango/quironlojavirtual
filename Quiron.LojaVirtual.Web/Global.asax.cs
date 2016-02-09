@@ -18,7 +18,7 @@ namespace Quiron.LojaVirtual.Web
             //WebApiConfig.Register(GlobalConfiguration.Configuration);
             //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //teste
+            //teste2
             ModelBinders.Binders.Add(typeof(Carrinho), new CarrinhoModelBinder());
         }
     }
