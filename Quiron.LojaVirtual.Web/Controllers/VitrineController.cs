@@ -12,7 +12,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
     public class VitrineController : Controller
     {
         private ProdutosRepositorio _repositorio;
-        public const int ProdutosPorPagina = 8;
+        public const int ProdutosPorPagina = 12;
 
         public string Index()
         {
@@ -20,20 +20,45 @@ namespace Quiron.LojaVirtual.Web.Controllers
             return "Vitrine Index page";
         }
 
-        public ViewResult ListaProdutos(string categoria, int pagina = 1)
+        //public ViewResult ListaProdutos(string categoria, int pagina = 1)
+        //{
+
+        //    _repositorio = new ProdutosRepositorio();
+
+
+        //    ProdutosViewModel model = new ProdutosViewModel();
+        //    model.Produtos = _repositorio.Produtos
+        //        .Where(p => categoria == null || p.Categoria.Trim().ToUpper() == categoria.Trim().ToUpper())
+        //        .OrderBy(p => p.Descricao);
+        //    model.Paginacao = new Paginacao { PaginaAtual = pagina, ItensPorPagina = ProdutosPorPagina, ItensTotal = model.Produtos.Count() };
+        //    model.Produtos.Skip((pagina - 1) * ProdutosPorPagina)
+        //        .Take(ProdutosPorPagina);
+        //    model.CategoriaAtual = categoria;
+
+        //    return View(model);
+        //}
+
+        public ViewResult ListaProdutos(string categoria)
         {
-            
+
             _repositorio = new ProdutosRepositorio();
 
-            
-            ProdutosViewModel model = new ProdutosViewModel();
-            model.Produtos = _repositorio.Produtos
-                .Where(p => categoria == null || p.Categoria.Trim().ToUpper() == categoria.Trim().ToUpper())
-                .OrderBy(p => p.Descricao);
-            model.Paginacao = new Paginacao { PaginaAtual = pagina, ItensPorPagina = ProdutosPorPagina, ItensTotal = model.Produtos.Count() };
-            model.Produtos.Skip((pagina - 1) * ProdutosPorPagina)
-                .Take(ProdutosPorPagina);
-            model.CategoriaAtual = categoria;
+            var model = new ProdutosViewModel();
+
+            var rnd = new Random();
+
+            if (categoria != null)
+            {
+                model.Produtos = _repositorio.Produtos
+                    .Where(p => p.Categoria == categoria)
+                    .OrderBy(x => rnd.Next()).ToList();
+            }
+            else
+            {
+                model.Produtos = _repositorio.Produtos
+                    .OrderBy(x => rnd.Next())
+                    .Take(ProdutosPorPagina).ToList();
+            }
 
             return View(model);
         }

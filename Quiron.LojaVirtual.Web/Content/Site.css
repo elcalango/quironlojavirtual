@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+     
     padding-bottom: 20px;
 }
 
@@ -18,5 +18,10 @@ textarea {
 
 .quantidate {
     width: 100px;
+}
+
+a.deco-none {
+    color: #000000;
+    text-decoration: none;
 }
 

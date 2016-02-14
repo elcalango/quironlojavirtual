@@ -20,7 +20,8 @@ namespace Quiron.LojaVirtual.Web.App_Start
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/bootstrap.css",
                     "~/Content/bootstrap-theme.css",
-                    "~/Content/ErroEstilo.css"
+                    "~/Content/ErroEstilo.css",
+                    "~/Content/Site.css"
                 ));
 
             BundleTable.EnableOptimizations = true;
