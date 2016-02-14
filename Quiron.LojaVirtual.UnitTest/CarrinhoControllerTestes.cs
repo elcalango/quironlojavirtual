@@ -34,7 +34,7 @@ namespace Quiron.LojaVirtual.UnitTest
 
             //Act
 
-            controller.Adicionar(carrinho, 2, "");
+            controller.Adicionar(carrinho, 2, 1, "");
 
             //Assert
 
@@ -53,7 +53,7 @@ namespace Quiron.LojaVirtual.UnitTest
             CarrinhoController controller = new CarrinhoController();
 
             //Act
-            RedirectToRouteResult result = controller.Adicionar(carrinho, 2, "minhaUrl");
+            RedirectToRouteResult result = controller.Adicionar(carrinho, 2, 1, "minhaUrl");
 
             Assert.AreEqual(result.RouteValues["action"], "Index");
 
