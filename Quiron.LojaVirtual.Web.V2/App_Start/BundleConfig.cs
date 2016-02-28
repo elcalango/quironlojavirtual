@@ -11,23 +11,25 @@ namespace Quiron.LojaVirtual.Web.V2
             bundles.Add(new StyleBundle("~/css").Include(
                       "~/css/*.css"));
 
-            
+
 
 
             // <!-- SmartMenu http://www.smartmenus.org/ -->
             bundles.Add(new StyleBundle("~/Content/startmenu").Include(
                  "~/Content/sm-core-css.css",
                     "~/Content/sm-simple/sm-simple.css"
-                  // "~/Content/sm-mint/sm-mint.css"
+             // "~/Content/sm-mint/sm-mint.css"
              ));
 
             bundles.Add(new ScriptBundle("~/js").Include(
                      "~/js/jquery.js",
-                      "~/js/bootstrap.js"));
+                      "~/js/bootstrap.js",
+                      "~/js/jquery.navgoco.js",
+                      "~/js/jquery.smartmenus.js"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/startmenu").Include(
-                "~/js/jquery.navgoco.js",
-                "~/js/jquery.smartmenus.js"));
+            //bundles.Add(new ScriptBundle("~/js/startmenu").Include(
+            //    "~/js/jquery.navgoco.js",
+            //    "~/js/jquery.smartmenus.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/jsprojetos").Include(
                     "~/Scripts/Menu.js"));
