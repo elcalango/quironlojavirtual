@@ -10,12 +10,12 @@ namespace Quiron.LojaVirtual.Web.V2.Controllers
 {
     public class MenuController : Controller
     {
-        private CategoriaRepositorio _repositorio;
+        private MenuRepositorio _repositorio;
 
-        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Server, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, Location = OutputCacheLocation.Server, VaryByParam = "none")]
         public JsonResult ObterEsportes()
         {
-            _repositorio = new CategoriaRepositorio();
+            _repositorio = new MenuRepositorio();
 
             var cat = _repositorio.ObterCategorias();
 
@@ -28,6 +28,22 @@ namespace Quiron.LojaVirtual.Web.V2.Controllers
                             };
 
             return Json(categoria, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ObterMarcas()
+        {
+            _repositorio = new MenuRepositorio();
+
+            var listaMarcas = _repositorio.ObterMarcas();
+
+            var marcas = from m in listaMarcas
+                         select new
+                         {
+                             m.MarcaDescricao,
+                             MarcaDescricaoSeo = m.MarcaDescricao.ToSeoUrl(),
+                             m.MarcaCodigo
+                         };
+            return Json(marcas, JsonRequestBehavior.AllowGet);
         }
     }
 }
