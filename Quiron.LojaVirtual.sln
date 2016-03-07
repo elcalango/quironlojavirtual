@@ -13,6 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiron.LojaVirtual.Web.V2",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4EAB4FF2-2E28-44F9-8AD7-46C91128A15C}"
 	ProjectSection(SolutionItems) = preProject
+		ClubesInternacionais.sql = ClubesInternacionais.sql
+		ClubesNacionais.sql = ClubesNacionais.sql
+		ScriptLinha.sql = ScriptLinha.sql
 		ScriptMarca.sql = ScriptMarca.sql
 		View_MarcaVitrine.sql = View_MarcaVitrine.sql
 	EndProjectSection

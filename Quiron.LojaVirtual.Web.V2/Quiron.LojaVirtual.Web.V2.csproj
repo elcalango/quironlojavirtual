@@ -168,6 +168,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sm-mint\sm-mint.css" />
     <Content Include="Content\sm-simple\sm-simple.css" />
     <Content Include="css\animate.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -257,6 +258,10 @@
     <Content Include="Content\sm-simple\sm-simple.scss" />
     <Content Include="Content\sm-simple\_mixins.scss" />
     <Content Include="Content\sm-simple\_sm-simple.scss" />
+    <Content Include="Content\sm-mint\mixins\_sub-items-indentation.scss" />
+    <Content Include="Content\sm-mint\sm-mint.scss" />
+    <Content Include="Content\sm-mint\_mixins.scss" />
+    <Content Include="Content\sm-mint\_sm-mint.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

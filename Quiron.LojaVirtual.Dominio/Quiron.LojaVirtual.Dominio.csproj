@@ -81,6 +81,9 @@
     <Compile Include="Entidades\EmailPedido.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\Produto.cs" />
+    <Compile Include="Entidades\Vitrine\Clubes.cs" />
+    <Compile Include="Entidades\Vitrine\ClubesInternacionais.cs" />
+    <Compile Include="Entidades\Vitrine\ClubesNacionais.cs" />
     <Compile Include="Entidades\Vitrine\MarcaVitrine.cs" />
     <Compile Include="Migrations\201602090013431_InitialCreate.cs" />
     <Compile Include="Migrations\201602090013431_InitialCreate.Designer.cs">
