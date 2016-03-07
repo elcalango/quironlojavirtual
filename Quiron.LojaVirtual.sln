@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4EAB
 		ClubesNacionais.sql = ClubesNacionais.sql
 		ScriptLinha.sql = ScriptLinha.sql
 		ScriptMarca.sql = ScriptMarca.sql
+		Selecoes.sql = Selecoes.sql
 		View_MarcaVitrine.sql = View_MarcaVitrine.sql
 	EndProjectSection
 EndProject

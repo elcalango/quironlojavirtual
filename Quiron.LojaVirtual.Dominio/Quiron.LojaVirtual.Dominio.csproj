@@ -85,6 +85,7 @@
     <Compile Include="Entidades\Vitrine\ClubesInternacionais.cs" />
     <Compile Include="Entidades\Vitrine\ClubesNacionais.cs" />
     <Compile Include="Entidades\Vitrine\MarcaVitrine.cs" />
+    <Compile Include="Entidades\Vitrine\Selecoes.cs" />
     <Compile Include="Migrations\201602090013431_InitialCreate.cs" />
     <Compile Include="Migrations\201602090013431_InitialCreate.Designer.cs">
       <DependentUpon>201602090013431_InitialCreate.cs</DependentUpon>

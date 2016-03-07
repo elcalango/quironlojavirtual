@@ -24,6 +24,8 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
 
         public DbSet<ClubesInternacionais> ClubesInternacionais { get; set; }
 
+        public DbSet<Selecoes> Selecoes { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
