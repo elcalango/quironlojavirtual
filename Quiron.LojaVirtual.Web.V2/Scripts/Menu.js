@@ -49,7 +49,7 @@ app.ObterClubesInternacionais = function () {
 };
 
 app.ObterSelecoes = function () {
-    
+    //alert("sssss");
     $.getJSON("/Menu/ObterSelecoes", function (data) {
         $(data).each(function () {
             
