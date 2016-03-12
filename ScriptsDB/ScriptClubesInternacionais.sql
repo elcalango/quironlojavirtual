@@ -1,4 +1,4 @@
-USE [Quiron]
+USE [QuironDatabase]
 GO
 
 /****** Object:  View [dbo].[ClubesInternacionais]    Script Date: 17/09/2015 08:58:22 ******/
