@@ -11,20 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiron.LojaVirtual.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiron.LojaVirtual.Web.V2", "Quiron.LojaVirtual.Web.V2\Quiron.LojaVirtual.Web.V2.csproj", "{29FDAC9F-1754-47F4-802B-7B4E97CEBCED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4EAB4FF2-2E28-44F9-8AD7-46C91128A15C}"
-	ProjectSection(SolutionItems) = preProject
-		ClubesInternacionais.sql = ClubesInternacionais.sql
-		ClubesNacionais.sql = ClubesNacionais.sql
-		C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScriptFaixaEtaria.sql = C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScriptFaixaEtaria.sql
-		ScriptLinha.sql = ScriptLinha.sql
-		ScriptMarca.sql = ScriptMarca.sql
-		C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGenero.sql = C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGenero.sql
-		C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGrupo.sql = C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGrupo.sql
-		C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGrupoSubGrupo.sql = C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpGrupoSubGrupo.sql
-		C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpModalidade.sql = C:\Users\NETO\Desktop\Fontes_Aula062SJHB\Quiron.LojaVirtual\Quiron.LojaVirtual.Scripts\ScritpModalidade.sql
-		Selecoes.sql = Selecoes.sql
-		View_MarcaVitrine.sql = View_MarcaVitrine.sql
-	EndProjectSection
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ScriptsDB", "ScriptsDB\ScriptsDB.sqlproj", "{389BC749-5F5A-45A7-83E2-63555B198EF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +35,12 @@ Global
 		{29FDAC9F-1754-47F4-802B-7B4E97CEBCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29FDAC9F-1754-47F4-802B-7B4E97CEBCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29FDAC9F-1754-47F4-802B-7B4E97CEBCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389BC749-5F5A-45A7-83E2-63555B198EF5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
